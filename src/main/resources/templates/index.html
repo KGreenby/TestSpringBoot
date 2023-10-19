@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>AUTHOR</th>
+            <th>ISBN</th>
+            <th>GENRE</th>
+            <th>CREATED_AT</th>
+        </tr>
+        <tr th:each="book, bookState : ${books}">
+            <td th:text="${bookState.count}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.isbn}"></td>
+            <td th:text="${book.genre}"></td>
+            <td th:text="${#temporals.format(book.created_at,'yyyy-MM-dd | hh:mm')}"></td>
+            <td><a th:href="@{/books/updateBook/{id}(id=${book.id})}">update</a></td>
+            <td><a th:href="@{/books/deleteBook/{id}(id=${book.id})}">delete</a></td>
+        </tr>
+    </table>
+    <button><a href="/books/addBook">Insert</a></button>
+</body>
+</html>
